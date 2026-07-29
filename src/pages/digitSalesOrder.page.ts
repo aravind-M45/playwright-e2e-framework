@@ -97,7 +97,8 @@ export class SalesOrderPage {
     }
 
     async saveSalesOrder() {
-        await this.saveButton.click({timeout:10000});
+        await expect(this.saveButton).toBeEnabled();
+        await this.saveButton.click();
     }
 
     async getSalesOrderId(): Promise<string> {

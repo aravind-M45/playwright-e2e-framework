@@ -1,9 +1,8 @@
-import { test, expect } from "@playwright/test"
-import {DigitLoginPage} from "../pages/digitLogin.page"
+import {test,expect} from "../fixtures/TestFixtures";
 
 test.describe("DigitLogin tests",{tag:"@digit"}, () => {
-    test("Digit login with valid credentials", async ({ page }) => {
-        const login = new DigitLoginPage(page);
+    test("Digit login with valid credentials", async ({ page, login }) => {
+        
         login.navigateToApplication();
         login.enterEmail(`${process.env.DIGIT_EMAIL}`);
         login.clickContinue();

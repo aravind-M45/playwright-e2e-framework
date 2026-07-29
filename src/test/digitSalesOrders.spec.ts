@@ -1,17 +1,10 @@
-import { test, expect } from "@playwright/test";
-import { SalesOrderPage } from "../pages/digitSalesOrder.page";
-import { DigitLoginPage } from "../pages/digitLogin.page";
+import {test, expect} from "../fixtures/TestFixtures";
 
-test.describe("Sales order", { tag: "@digit" }, () => {
 
-    let salesOrder: SalesOrderPage;
-    let login: DigitLoginPage;
+test.describe.serial("Sales order", { tag: "@digit" }, () => {
     let soId: string;
 
-    test.beforeEach(async ({ page }) => {
-
-        login = new DigitLoginPage(page);
-        salesOrder = new SalesOrderPage(page);
+    test.beforeEach(async ({ page, login }) => {
         await login.navigateToApplication();
         await login.enterEmail(process.env.DIGIT_EMAIL!);
         await login.clickContinue();
@@ -21,7 +14,7 @@ test.describe("Sales order", { tag: "@digit" }, () => {
         await expect(page).toHaveTitle(/Scorecard/);
     });
 
-    test("Verify Sales Order creation", async () => {
+    test("Verify Sales Order creation", async ({salesOrder}) => {
         await salesOrder.openSalesOrders();
         await salesOrder.clickNewSalesOrder();
 
@@ -41,7 +34,7 @@ test.describe("Sales order", { tag: "@digit" }, () => {
         console.log(soId);
     });
 
-    test("Verify Sales Order deletion", async () => {
+    test("Verify Sales Order deletion", async ({salesOrder}) => {
         await salesOrder.openSalesOrders();
         await salesOrder.searchSalesOrder(soId);
         await salesOrder.openSalesOrder(soId);
