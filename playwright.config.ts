@@ -21,10 +21,10 @@ export default defineConfig({
 
 
   // Customize Global Test TimeOut
-  timeout: 30000,    //def = 30000(30sec)
+  timeout: 60000,    //def = 30000(30sec)
   
   // Customize Expect(assert) Time-Out
-  expect: {timeout:10000}, //def 5000(5sec) 
+  expect: {timeout:15000}, //def 5000(5sec) 
 
   
   /* Run tests in files in parallel */

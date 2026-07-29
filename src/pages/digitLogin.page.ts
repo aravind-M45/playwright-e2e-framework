@@ -1,6 +1,6 @@
 import {test,expect,Page,Locator} from "@playwright/test"
 
-export class digitLoginPage {
+export class DigitLoginPage {
 
     //Locators
     readonly page:Page;
