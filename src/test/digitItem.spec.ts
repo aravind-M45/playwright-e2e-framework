@@ -9,7 +9,6 @@ test.describe("Digit Item", { tag: "@digit" }, () => {
     await login.clickContinue();
     await login.enterPassword(process.env.DIGIT_PASSWORD!);
     await login.clickContinue();
-    await page.waitForLoadState("networkidle");
   });
 
   test("Item creation", async ({ page }) => {

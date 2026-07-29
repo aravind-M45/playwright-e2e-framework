@@ -8,7 +8,6 @@ test.describe("DigitLogin tests",{tag:"@digit"}, () => {
         await login.clickContinue();
         await login.enterPassword(`${process.env.DIGIT_PASSWORD}`);
         await login.clickContinue();
-        await page.waitForLoadState('networkidle');
         await expect(page).toHaveTitle(/Scorecard/);
         await expect(page).toHaveURL(/scorecard/);
     })

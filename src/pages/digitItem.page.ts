@@ -99,7 +99,6 @@ export class DigitItemPage {
 
     async verifyItemDeletion() {
         await this.tableRefresh.click();
-        await this.page.waitForLoadState('networkidle')
         await this.search.clear();
         await this.searchItem();
         await expect(this.noResultsFound).toBeVisible();
