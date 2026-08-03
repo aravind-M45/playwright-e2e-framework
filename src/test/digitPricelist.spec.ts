@@ -1,8 +1,11 @@
 import { test, expect } from "@playwright/test";
 import { DigitLoginPage } from "../pages/digitLogin.page"
+import {faker} from "@faker-js/faker";
 
 test("Price List", async ({ page }) => {
     let login = new DigitLoginPage(page);
+    const priceListName = `Test_Pricelist_${faker.string.alphanumeric(4)}`;
+    console.log(`Price List Name: ${priceListName}`);
     await login.navigateToApplication();
     await login.enterEmail(`${process.env.DIGIT_EMAIL}`)
     await login.clickContinue()
@@ -12,7 +15,7 @@ test("Price List", async ({ page }) => {
     await expect(page).toHaveURL(/scorecard/)
     await page.getByText("Price lists", { exact: true }).click();
     await page.getByRole("button", { name: /New price list/i }).click();
-    await page.getByRole('textbox', { name: /Name/i }).fill('Test_Pricelist01');
+    await page.getByRole('textbox', { name: /Name/i }).fill(priceListName);
     await page.locator('span').filter({ hasText: 'Search to add...' }).first().click();
     await page.getByPlaceholder("Search all items").fill("Asus TUF - A15 Laptop");
     const laptopRow = page.getByRole('row', { name: /Asus TUF - A15 Laptop/ });
@@ -29,6 +32,6 @@ test("Price List", async ({ page }) => {
 
     await page.getByRole('button', { name: /Add customers/i }).last().click();
     await page.getByRole('button', { name: /Save/i }).click();
-    await expect(page.locator('p').filter({ hasText: 'Test_Pricelist01' })).toBeVisible();
+    await expect(page.locator('p').filter({ hasText: priceListName })).toBeVisible();
 
 })
