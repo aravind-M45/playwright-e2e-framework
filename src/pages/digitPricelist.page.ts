@@ -4,6 +4,7 @@ import { faker } from "@faker-js/faker";
 export class PriceList {
     readonly page: Page;
     readonly priceListName = `Test_Pricelist_${faker.string.alphanumeric(4)}`;
+    currentName: string = this.priceListName;
     readonly pricelist: Locator;
     readonly newPriceListButton: Locator;
     readonly nameTextbox: Locator;
@@ -19,10 +20,12 @@ export class PriceList {
     readonly customerCheckbox: Locator;
     readonly customerAddButton: Locator;
     readonly saveButton: Locator;
+    readonly searchPL: Locator;
+
 
     constructor(page: Page) {
         this.page = page;
-        this.pricelist = page.getByText("Price lists", { exact: true });
+        this.pricelist = page.getByRole('link', { name: 'Price lists' }).first();
         this.newPriceListButton = page.getByRole("button", { name: /New price list/i });
         this.nameTextbox = page.getByRole('textbox', { name: /Name/i });
         this.searchItem = page.locator('span').filter({ hasText: 'Search to add...' }).first();
@@ -37,10 +40,14 @@ export class PriceList {
         this.customerCheckbox = this.customerRow.getByRole('checkbox', { name: 'Press Space to toggle row' });
         this.customerAddButton = page.getByRole('button', { name: /Add customers/i }).last();
         this.saveButton = page.getByRole('button', { name: /Save/i });
+        this.searchPL = page.getByRole('textbox', { name: 'Search...' });
     }
 
-    async openNewPriceList() {
+    async goToPriceLists() {
         await this.pricelist.click();
+    }
+    async openNewPriceList() {
+        await this.goToPriceLists();
         await this.newPriceListButton.click();
     }
 
@@ -82,5 +89,19 @@ export class PriceList {
         await this.addCustomerToPriceList();
         await this.save();
         await this.expectCreated();
+    }
+
+    async updatePriceList() {
+        const updatedName = `Updated_${this.priceListName}`;
+        await this.goToPriceLists();  
+        await this.searchPL.fill(this.currentName);
+        await this.searchPL.press('Enter');
+        await this.page.getByRole('link', { name: this.currentName }).click();
+        await this.nameTextbox.fill(updatedName);  
+        await this.page.locator('[aria-haspopup="listbox"]').click();
+        await this.page.getByText('Inactive', { exact: true }).click();
+        await this.page.getByRole('button', { name: /Save/i }).click();
+        await expect(this.page.getByRole('button', { name: /Save/i })).toBeDisabled();
+        this.currentName = updatedName;
     }
 }
