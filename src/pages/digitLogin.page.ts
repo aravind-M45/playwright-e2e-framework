@@ -31,4 +31,17 @@ export class DigitLoginPage {
     async enterPassword(password:string){
         await this.password.fill(password);
     }
+
+    async userLogin(email:string,password:string){
+        await this.navigateToApplication();
+        await this.enterEmail(email);
+        await this.clickContinue();
+        await this.enterPassword(password);
+        await this.clickContinue();
+    }
+
+     async verifyLogin() {
+        await expect(this.page).toHaveTitle(/Scorecard/);
+        await expect(this.page).toHaveURL(/scorecard/);
+    }
 }
