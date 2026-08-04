@@ -8,7 +8,7 @@ test.describe("Price List", { tag: '@digit' }, async () => {
         await login.userLogin(`${process.env.DIGIT_EMAIL}`, `${process.env.DIGIT_PASSWORD}`);
         await login.verifyLogin();
     })
-    test("Verify Price List creation", async ({ page }) => {
+    test("Verify Price List creation and updation", async ({ page }) => {
         const priceList = new PriceList(page);
         await priceList.createPriceList();
         await priceList.updatePriceList();
