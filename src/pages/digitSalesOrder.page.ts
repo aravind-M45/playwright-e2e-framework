@@ -3,13 +3,12 @@ import { Page, Locator, expect } from "@playwright/test";
 export class SalesOrderPage {
 
     readonly page: Page;
-
+    itemName: string = "";          
     readonly salesOrdersMenu: Locator;
     readonly newSalesOrderButton: Locator;
     readonly customerDropdown: Locator;
     readonly addItemsButton: Locator;
     readonly itemSearch: Locator;
-    readonly itemCheckbox: Locator;
     readonly saveButton: Locator;
     readonly salesOrderHeading: Locator;
     readonly searchTextbox: Locator;
@@ -31,10 +30,6 @@ export class SalesOrderPage {
         });
 
         this.itemSearch = page.getByPlaceholder("Search all items");
-
-        this.itemCheckbox = page.getByRole("checkbox", {
-            name: "Toggle select row"
-        });
 
         this.saveButton = page.getByRole("button", {
             name: "Save"
@@ -83,16 +78,16 @@ export class SalesOrderPage {
     }
 
     async searchItem(itemName: string) {
+        this.itemName = itemName;   
         await this.itemSearch.fill(itemName);
         await this.page.keyboard.press("Enter");
     }
 
     async selectItem() {
-
-        await expect(this.itemCheckbox).toBeVisible();
-
-        await this.itemCheckbox.check();
-
+        const row = this.page.getByRole("row", { name: this.itemName });
+        const itemCheckbox = row.getByRole("checkbox", { name: "Toggle select row" });
+        await expect(itemCheckbox).toBeVisible();
+        await itemCheckbox.check();
         await this.addItemsButton.click();
     }
 

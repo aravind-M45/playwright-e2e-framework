@@ -1,7 +1,7 @@
 import {test, expect} from "../fixtures/TestFixtures";
 
 
-test.describe.serial("Sales order", { tag: "@digit" }, () => {
+test.describe("Sales order", { tag: "@digit" }, () => {
     let soId: string;
 
     test.beforeEach(async ({ page, login }) => {
