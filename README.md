@@ -1,4 +1,4 @@
-# Playwright E2E Practice
+# Playwright E2E Framework
 
 End-to-end test automation suite built with [Playwright](https://playwright.dev/) and TypeScript, covering key workflows of the application (login, price lists, customers, items, etc.).
 
