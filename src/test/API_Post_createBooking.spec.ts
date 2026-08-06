@@ -1,12 +1,12 @@
 
 import {test,expect} from "@playwright/test"
-import PostAPIBookingData from "../tests/TestData/API_testdata/POST_BookingDetails.json"
+import PostAPIBookingData from "../test-data/API_testdata/POST_BookingDetails.json"
 
 
 test.use({
     baseURL:"https://restful-booker.herokuapp.com",
 })
-test("POST API request using static file to Create Booking",async ({request})=>{
+test("POST API request using static file to Create Booking",{tag:'@api'},async ({request})=>{
     const postAPIResponse=await request.post("/booking",{data:PostAPIBookingData})
     const postJSONResponse=await postAPIResponse.json()
     console.log(postJSONResponse)
