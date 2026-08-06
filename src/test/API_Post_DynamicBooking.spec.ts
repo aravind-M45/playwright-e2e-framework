@@ -44,5 +44,8 @@ test("POST API request using dynamic file to create booking using faker",{tag:'@
     expect(postAPIResponse.headers()['content-type']).toContain("application/json; charset=utf-8");
     expect(postJSONResponse.booking).toHaveProperty("totalprice");
     expect(postJSONResponse.booking).toHaveProperty("firstname");
+    expect(postJSONResponse.booking.firstname).toBe(firstName);
+    expect(postJSONResponse.booking.lastname).toBe(lastName);
+    expect(postJSONResponse.booking.totalprice).toBe(totalprice);
 
 })
