@@ -7,7 +7,7 @@ test.use({
     baseURL:"https://restful-booker.herokuapp.com",
 })
 
-test("GET BookingDetails using playwright",async ({request})=>{
+test("GET BookingDetails using playwright",{tag:"@api"},async ({request})=>{
     const fname=faker.person.firstName();
     const lname=faker.person.lastName();
     const totalPrice=faker.number.int({min:10,max:1000});
