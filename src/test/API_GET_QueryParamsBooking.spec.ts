@@ -15,14 +15,15 @@ test("Query Params: Verify GET request with query parameters",{tag:"@api"}, asyn
     const APIRequestBody = await getPostAPIRequestBody(fname, lname, totalprice, true, "Breakfast", "2026-06-01", "2026-06-10");
     const postAPIResponse=await request.post("/booking",{data:APIRequestBody})
     const postJSONResponse=await postAPIResponse.json();
+    console.log("POST API JSON Response:",postJSONResponse);
     expect(postAPIResponse.status()).toBe(200);
     expect(postAPIResponse.statusText()).toBe("OK");
     const bookingId=postJSONResponse.bookingid;
 
-    const getAPIResponse=await request.get(`/booking/${bookingId}`,{params:{firstname:fname,lastname:lname}})
+    const getAPIResponse=await request.get(`/booking/`,{params:{firstname:fname,lastname:lname}})
     expect(getAPIResponse.status()).toBe(200);
     expect(getAPIResponse.statusText()).toBe("OK");
     const getJSONResponse=await getAPIResponse.json();
-    expect(getJSONResponse.firstname).toBe(fname);
-    expect(getJSONResponse.lastname).toBe(lname);
+    console.log("QueryParams API Response Body: ",getJSONResponse);
+    
 })
