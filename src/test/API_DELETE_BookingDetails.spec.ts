@@ -9,7 +9,7 @@ test.use({
     baseURL: "https://restful-booker.herokuapp.com"
 })
 
-test("Create PATCH API request for Booking",{tag:"@api"}, async ({ request }) => {
+test("Verify End-To-End API flow with DELETE", { tag: "@api" }, async ({ request }) => {
     const fname = faker.person.firstName();
     const lname = faker.person.lastName();
     const totalPrice = faker.number.int({ min: 10, max: 1000 });
@@ -44,18 +44,28 @@ test("Create PATCH API request for Booking",{tag:"@api"}, async ({ request }) =>
     const tokenJSONResponse = await tokenAPIResponse.json();
     const token = tokenJSONResponse.token
     console.log("Generated Token: " + token)
-    //PATCH API Request for updating the Booking details
-    
-    const patchAPIResponse=await request.patch(`/booking/${bookingID}`,{
-        headers:{
-            "Cookie":`token=${token}`
+
+
+    //PUT API Request for updating the Booking details
+    const patchAPIResponse = await request.patch(`/booking/${bookingID}`, {
+        headers: {
+            "Cookie": `token=${token}`
         },
-        data:PATCHBookingData
+        data: PATCHBookingData
     })
-    const patchJSONResponse=await patchAPIResponse.json();
-    console.log("Patch API JSON Response: ",JSON.stringify(patchJSONResponse,null,2))
+    const patchJSONResponse = await patchAPIResponse.json();
+    console.log("Patch API JSON Response: ", JSON.stringify(patchJSONResponse, null, 2))
     expect(patchAPIResponse.status()).toBe(200);
     expect(patchAPIResponse.statusText()).toBe("OK")
     expect(patchJSONResponse.firstname).toBe(PATCHBookingData.firstname)
 
+    //DELETE API Request for Deleting the Booking details
+    const deleteAPIResponse = await request.delete(`/booking/${bookingID}`, {
+        headers: {
+            "Cookie": `token=${token}`
+        },
+    })
+    expect(deleteAPIResponse.status()).toBe(201);
+    expect(deleteAPIResponse.statusText()).toBe("Created");
+    console.log("Delete API Response Body: ",await deleteAPIResponse.body());
 })
