@@ -5,7 +5,7 @@ test.use({
     screenshot:'on',
     browserName:'chromium'
 })
-test("Mocking Data using the HAR file",async ({page})=>{
+test("Mocking Data using the HAR file",{tag:'@mockAPI'},async ({page})=>{
     await page.routeFromHAR("./Har/fruits.har",{
         url:"*/**/api/v1/fruits",
         update:false

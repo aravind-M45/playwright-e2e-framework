@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test"
 
-test("Mock API Request using playwright", async ({ page }) => {
+test("Mock API Request using playwright",{tag:'@mockAPI'}, async ({ page }) => {
     await page.route("*/**/api/v1/fruits", async route => {
         const json = [
             { name: 'Playwright API Mocking', id: '101' },

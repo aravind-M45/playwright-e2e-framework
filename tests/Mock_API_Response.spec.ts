@@ -3,7 +3,7 @@ import {test,expect} from "@playwright/test"
 test.use({
     screenshot:'on'
 })
-test("Mock API Response",async ({page})=>{
+test("Mock API Response",{tag:'@mockAPI'},async ({page})=>{
     
     //Mock API response
     await page.route("*/**/api/v1/fruits",async route=>{
