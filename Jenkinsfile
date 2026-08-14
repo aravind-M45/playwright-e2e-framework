@@ -29,7 +29,7 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'digit-env-file', variable: 'ENV_FILE')]) {
                     bat 'copy %ENV_FILE% .env'
-                    bat 'npx playwright test --grep "@digit|@api"'
+                    bat 'npx playwright test --grep "@digit|@api" --project=chromium'
                 }
             }
         }
