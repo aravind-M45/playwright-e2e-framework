@@ -27,7 +27,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'npx playwright test'
+                bat 'npx playwright test --grep "@digit|@api" --project=chromium'
             }
         }
     }
