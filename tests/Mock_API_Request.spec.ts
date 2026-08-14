@@ -9,6 +9,7 @@ test("Mock API Request using playwright",{tag:'@mockAPI'}, async ({ page }) => {
         ]
         await route.fulfill({ json })
     })
+    //Validation
     await page.goto("https://demo.playwright.dev/api-mocking/")
     await expect(page.getByText('Playwright API Mocking')).toBeVisible()
     await expect(page.getByText('API Testing')).toBeVisible()

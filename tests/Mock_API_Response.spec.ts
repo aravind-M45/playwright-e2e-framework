@@ -14,7 +14,8 @@ test("Mock API Response",{tag:'@mockAPI'},async ({page})=>{
         json.push({name:"API Testing using Postman",id:102})
         await route.fulfill({response,json})
     })
-    // Validation
+    
+    //Validation
     await page.goto("https://demo.playwright.dev/api-mocking/")
     await expect(page.getByText("API Testing using playwright")).toBeVisible();
     await expect(page.getByText("Playwright Mocking", { exact: true })).toBeVisible();

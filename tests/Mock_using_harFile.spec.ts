@@ -10,6 +10,8 @@ test("Mocking Data using the HAR file",{tag:'@mockAPI'},async ({page})=>{
         url:"*/**/api/v1/fruits",
         update:false
     })
+    
+    //Validation
     await page.goto("https://demo.playwright.dev/api-mocking/");
     await expect(page.getByText("Playwright with Typescript")).toBeVisible();
     await expect(page.getByText("Playwright API Testing")).toBeVisible();
