@@ -1,0 +1,14 @@
+﻿[
+  {
+    "name": "Playwright with Typescript",
+    "id": 1
+  },
+  {
+    "name": "Playwright API Testing",
+    "id": 2
+  },
+  {
+    "name": "Playwright with Jenkins",
+    "id": 3
+  }
+]
