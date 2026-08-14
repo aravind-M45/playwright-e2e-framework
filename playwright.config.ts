@@ -73,7 +73,7 @@ export default defineConfig({
     navigationTimeout:20000,
     screenshot: 'only-on-failure',   
     video: 'retain-on-failure',      
-    trace: 'retain-on-failure',
+    trace: 'on-first-retry',
 
     /*Screenshot Config
     screenshot:'only-on-failure',
