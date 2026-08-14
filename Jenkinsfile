@@ -2,6 +2,10 @@
 pipeline {
     agent any
 
+    triggers {
+        pollSCM('H/1 * * * *')
+    }
+
     tools {
         nodejs 'NodeJS'
     }
@@ -37,7 +41,7 @@ pipeline {
 
     post {
         always {
-            junit 'test-results/junit.xml'
+            junit 'junit-test-report.xml'
             publishHTML(target: [
                 allowMissing: true,
                 alwaysLinkToLastBuild: true,
