@@ -1,12 +1,10 @@
 // testFixture.ts
 import { test as base, } from '@playwright/test';
-import { Test01 } from '../pages/testcase01.page';
 import { SalesOrderPage } from '../pages/digitSalesOrder.page';
 import { DigitLoginPage } from '../pages/digitLogin.page';
 
 export const test = base.extend<{
   saveLogs: void;
-  testObj: Test01;
   login: DigitLoginPage;
   salesOrder: SalesOrderPage;
 }>({
@@ -27,10 +25,6 @@ export const test = base.extend<{
     },
     { auto: true },
   ],
-  testObj: async ({ page }, use) => {
-    const testObj = new Test01(page);
-    await use(testObj);
-  },
   salesOrder: async ({ page }, use) => {
     const salesOrder = new SalesOrderPage(page);
     await use(salesOrder);

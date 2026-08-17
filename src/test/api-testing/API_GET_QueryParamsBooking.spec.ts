@@ -1,7 +1,7 @@
 
 import { test, expect } from "@playwright/test";
 import { faker } from "@faker-js/faker";
-import {getPostAPIRequestBody} from "../utils/APIHelpers";
+import {getPostAPIRequestBody} from "../../utils/APIHelpers";
 
 test.use({
     baseURL: "https://restful-booker.herokuapp.com",

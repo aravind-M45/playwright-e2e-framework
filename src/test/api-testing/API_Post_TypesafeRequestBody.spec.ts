@@ -1,5 +1,5 @@
 import {test,expect} from "@playwright/test";
-import {getPostAPIRequestBody} from "../utils/APIHelpers";
+import {getPostAPIRequestBody} from "../../utils/APIHelpers";
 import {faker} from "@faker-js/faker";
 
 test.use({

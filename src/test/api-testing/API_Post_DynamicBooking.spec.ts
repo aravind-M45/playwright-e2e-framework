@@ -1,5 +1,5 @@
 import {test,expect} from "@playwright/test";
-import {formatAPIRequest} from "../utils/APIHelpers";
+import {formatAPIRequest} from "../../utils/APIHelpers";
 
 import path from "path";
 import fs from "fs";
@@ -10,7 +10,7 @@ test.use({
 })
 
 test("POST API request using dynamic file to create booking",{tag:'@api'},async({request})=>{
-    const jsonPath = path.join(__dirname, "../test-data/API_testdata/POST_DynamicDetails.json");
+    const jsonPath = path.join(__dirname, "../../test-data/API_testdata/POST_DynamicDetails.json");
     const postAPIBooking = fs.readFileSync(jsonPath,"utf-8");
 
     const values=["Dynamic Test Data", "Playwright API testing", 4500];
@@ -27,7 +27,7 @@ test("POST API request using dynamic file to create booking",{tag:'@api'},async(
 
 })
 test("POST API request using dynamic file to create booking using faker",{tag:'@api'},async({request})=>{
-    const jsonPath = path.join(__dirname, "../test-data/API_testdata/POST_DynamicDetails.json");
+    const jsonPath = path.join(__dirname, "../../test-data/API_testdata/POST_DynamicDetails.json");
     const postAPIBooking = fs.readFileSync(jsonPath,"utf-8");
 
     const firstName = faker.person.firstName();

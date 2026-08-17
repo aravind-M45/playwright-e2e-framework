@@ -1,6 +1,6 @@
 
 import {test,expect} from "@playwright/test"
-import PostAPIBookingData from "../test-data/API_testdata/POST_BookingDetails.json"
+import PostAPIBookingData from "../../test-data/API_testdata/POST_BookingDetails.json"
 
 
 test.use({
