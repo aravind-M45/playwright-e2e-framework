@@ -12,7 +12,7 @@
     "@playwright/test": "^1.58.2",
     "@types/node": "^24.13.2",
     "allure-commandline": "^2.43.0",
-    "allure-playwright": "^3.6.0"
+    "allure-playwright": "^3.10.2"
   },
   "dependencies": {
     "csv-parse": "^6.1.0",

@@ -2,11 +2,13 @@
 import { test as base, } from '@playwright/test';
 import { SalesOrderPage } from '../pages/digitSalesOrder.page';
 import { DigitLoginPage } from '../pages/digitLogin.page';
+import Routing from "../pages/digitRouting.page" 
 
 export const test = base.extend<{
   saveLogs: void;
   login: DigitLoginPage;
   salesOrder: SalesOrderPage;
+  routing:Routing;
 }>({
   saveLogs: [
     async ({ page }, use, testInfo) => {
@@ -25,6 +27,10 @@ export const test = base.extend<{
     },
     { auto: true },
   ],
+  routing:async({page},use)=>{
+    const routing=new Routing(page);
+    await use(routing);
+  },
   salesOrder: async ({ page }, use) => {
     const salesOrder = new SalesOrderPage(page);
     await use(salesOrder);
