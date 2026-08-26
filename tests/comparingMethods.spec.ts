@@ -21,7 +21,16 @@ test("Verify Methods",async ({page})=>{
 
     for(let i in allProducts)
     {
-        console.log(await aallProducts[i].innerText());
-    }
-    
+        console.log(await allProducts[i].innerText());
+    }  
+})
+
+test.only("Verify File Upload in the Automation Practise site",async ({page})=>{
+    await page.goto("https://testautomationpractice.blogspot.com/");
+    await page.getByRole('link',{name:"Download Files"}).click();
+    expect(page.getByText("Upload Files")).toBeVisible();
+    const fileInput=page.locator("#singleFileInput")
+    await fileInput.setInputFiles("tests/uploads/fileupload.json")
+    await page.getByRole('button',{name:"Upload Single File"}).click();
+    await expect(page.locator('[id="singleFileStatus"]')).toHaveText(/Single file selected/i)
 })
