@@ -12,8 +12,8 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
-  //testDir: 'src/test', //for pages
+  //testDir: './tests',
+  testDir: 'src/test', //for pages
 
   //tags
   //grep:/@sanity/,
