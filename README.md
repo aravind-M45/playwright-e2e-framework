@@ -40,8 +40,8 @@ npm -v
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/aravind-M45/Playwright-E2E-Practice.git
-cd Playwright-E2E-Practice
+git clone https://github.com/aravind-M45/playwright-e2e-framework.git
+cd playwright-e2e-framework
 ```
 
 ### 2. Install project dependencies
