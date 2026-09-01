@@ -14,13 +14,17 @@ export class DigitItemPage {
     readonly search: Locator;
     readonly selectItem: Locator;
     readonly menu: Locator;
-    readonly deleteItemOption: Locator
+    readonly deleteItemOption: Locator;
     readonly deleteCheckbox01: Locator;
     readonly deleteCheckbox02: Locator;
     readonly deleteCheckbox03: Locator;
-    readonly confirmItemDelete: Locator
-    readonly noResultsFound: Locator
-    readonly tableRefresh: Locator
+    readonly confirmItemDelete: Locator;
+    readonly noResultsFound: Locator;
+    readonly tableRefresh: Locator;
+    readonly serviceItemsTab: Locator;
+    readonly serviceItemSearchbar: Locator;
+    readonly serviceItem: Locator;
+    readonly addPhoto: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -41,7 +45,45 @@ export class DigitItemPage {
         this.confirmItemDelete = page.getByRole('button', { name: 'Delete item' })
         this.noResultsFound = page.getByText('No results found', { exact: true })
         this.closeItemModal = page.getByLabel('Close dialog')
-        this.tableRefresh=page.getByRole('button', { name: 'Refresh data' })
+        this.tableRefresh = page.getByRole('button', { name: 'Refresh data' })
+        this.serviceItemsTab = page.getByRole('tab', { name: 'Service items' })
+        this.serviceItemSearchbar = page.getByRole('textbox', { name: 'Search...' })
+        this.serviceItem = page.getByText("POServiceItem")
+        this.addPhoto = page.getByRole('button', { name: 'Add photo', exact: true })
+    }
+
+    //Service Items:
+
+    async navToServiceItems() {
+        this.serviceItemsTab.click();
+    }
+
+    async searchServiceItems() {
+        this.serviceItemSearchbar.fill("POServiceItem");
+        this.serviceItem.click();
+    }
+
+    async serviceItemFileUpload() {
+        const fileChooserPromise = this.page.waitForEvent('filechooser');
+        await this.addPhoto.click();
+
+        const fileChooser = await fileChooserPromise;
+        await fileChooser.setFiles('./tests/uploads/Bottle.jpg');
+
+        await this.page.getByRole('button', { name: 'Done', exact: true }).click();
+        await expect(this.page.getByText('Default', { exact: true })).toBeVisible();
+        await this.page.getByText('Save', { exact: true }).click();
+
+        /* Direct File Upload:
+        const fileChooserPromise = page.waitForEvent('filechooser');
+        await page.getByRole('button', { name: 'Add photo', exact: true }).click();
+        const fileChooser = await fileChooserPromise;
+        await fileChooser.setFiles('./tests/uploads/Bottle.jpg');
+
+        await page.getByRole('button', { name: 'Done', exact: true }).click();
+
+        await expect(page.getByText('Default', { exact: true })).toBeVisible();
+        await page.getByRole('button', { name: "Save" }).click();*/
     }
 
     async navigateToItemPage() {
