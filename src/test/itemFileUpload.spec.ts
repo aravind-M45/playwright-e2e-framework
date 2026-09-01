@@ -20,6 +20,6 @@ test("File Upload", async ({ page, login }) => {
     await page.getByRole('button', { name: 'Done', exact: true }).click();
 
     await expect(page.getByText('Default', { exact: true })).toBeVisible();
-    await page.getByRole('button',{name:"Save"}).click();
+    await page.getByText('Save', { exact: true }).click();
 
 })
