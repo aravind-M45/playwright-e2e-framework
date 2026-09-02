@@ -1,6 +1,4 @@
-
 import { test, expect } from "../fixtures/TestFixtures";
-import { DigitItemPage } from "../pages/digitItem.page";
 
 test.describe("Digit Item", { tag: "@digit" }, () => {
     test.beforeEach(async ({ page, login }) => {
@@ -11,31 +9,28 @@ test.describe("Digit Item", { tag: "@digit" }, () => {
       await login.clickContinue();
     });
 
-    test("Inventory Item creation", async ({ page }) => {
-      const digitItemPage = new DigitItemPage(page);
-      await digitItemPage.navigateToItemPage();
-      await digitItemPage.selectInventoryItem();
-      await digitItemPage.enterItemName("E2E_TestItem");
-      await digitItemPage.selectUOM();
-      await digitItemPage.saveItem();
-      await digitItemPage.verifyItemCreation();
+    test("Inventory Item creation", async ({digitItem }) => {
+      await digitItem.navigateToItemPage();
+      await digitItem.selectInventoryItem();
+      await digitItem.enterItemName("E2E_TestItem");
+      await digitItem.selectUOM();
+      await digitItem.saveItem();
+      await digitItem.verifyItemCreation();
     });
 
-    test("Inventory Item deletion", async ({ page }) => {
-      const digitItemPage = new DigitItemPage(page);
-      await digitItemPage.navigateToItemPage();
-      await digitItemPage.searchItem();
-      await digitItemPage.selectSearchItem();
-      await digitItemPage.openMenu();
-      await digitItemPage.selectDeleteOption();
-      await digitItemPage.confirmItemDeletion();
+    test("Inventory Item deletion", async ({digitItem }) => {
+      await digitItem.navigateToItemPage();
+      await digitItem.searchItem();
+      await digitItem.selectSearchItem();
+      await digitItem.openMenu();
+      await digitItem.selectDeleteOption();
+      await digitItem.confirmItemDeletion();
     });
 
-    test("Verify Service Item File Upload",async ({page})=>{
-      const digitItemPage = new DigitItemPage(page);
-      await digitItemPage.navigateToItemPage();
-      await digitItemPage.navToServiceItems();
-      await digitItemPage.searchServiceItems();
-      await digitItemPage.serviceItemFileUpload();
+    test("Verify Service Item File Upload",async ({digitItem})=>{
+      await digitItem.navigateToItemPage();
+      await digitItem.navToServiceItems();
+      await digitItem.searchServiceItems();
+      await digitItem.serviceItemFileUpload();
     })
 });

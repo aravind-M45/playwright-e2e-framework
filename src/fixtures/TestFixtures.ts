@@ -3,12 +3,14 @@ import { test as base, } from '@playwright/test';
 import { SalesOrderPage } from '../pages/digitSalesOrder.page';
 import { DigitLoginPage } from '../pages/digitLogin.page';
 import Routing from "../pages/digitRouting.page" 
+import {DigitItemPage} from "../pages/digitItem.page"
 
 export const test = base.extend<{
   saveLogs: void;
   login: DigitLoginPage;
   salesOrder: SalesOrderPage;
   routing:Routing;
+  digitItem:DigitItemPage;
 }>({
   saveLogs: [
     async ({ page }, use, testInfo) => {
@@ -27,6 +29,10 @@ export const test = base.extend<{
     },
     { auto: true },
   ],
+  digitItem: async({page},use)=>{
+    const digitItem=new DigitItemPage(page);
+    await use(digitItem);
+  },
   routing:async({page},use)=>{
     const routing=new Routing(page);
     await use(routing);
