@@ -17,7 +17,7 @@ interface LoginData {
     validity: string;
 }
 
-const path = "tests/TestData/loginData02.csv";
+const path = "learning/TestData/loginData02.csv";
 const content = fs.readFileSync(path, "utf-8");
 
 const records: LoginData[] = parse(content, {
@@ -67,7 +67,7 @@ test.describe("Group-01", async () => {
 import fs from 'fs'
 import {parse} from "csv-parse/sync"
 
-const path='tests/TestData/loginData02.csv';
+const path='learning/TestData/loginData02.csv';
 const content=fs.readFileSync(path,"utf-8");
 let records=parse(content,{columns:true,skip_empty_lines:true});
 

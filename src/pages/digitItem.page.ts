@@ -68,7 +68,7 @@ export class DigitItemPage {
         await this.addPhoto.click();
 
         const fileChooser = await fileChooserPromise;
-        await fileChooser.setFiles('./tests/uploads/Bottle.jpg');
+        await fileChooser.setFiles('./learning/uploads/Bottle.jpg');
 
         await this.page.getByRole('button', { name: 'Done', exact: true }).click();
         await expect(this.page.getByText('Default', { exact: true })).toBeVisible();
@@ -78,7 +78,7 @@ export class DigitItemPage {
         const fileChooserPromise = page.waitForEvent('filechooser');
         await page.getByRole('button', { name: 'Add photo', exact: true }).click();
         const fileChooser = await fileChooserPromise;
-        await fileChooser.setFiles('./tests/uploads/Bottle.jpg');
+        await fileChooser.setFiles('./learning/uploads/Bottle.jpg');
 
         await page.getByRole('button', { name: 'Done', exact: true }).click();
 

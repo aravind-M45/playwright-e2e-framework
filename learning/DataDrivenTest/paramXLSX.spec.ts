@@ -4,7 +4,7 @@ import fs from 'fs'
 import * as XLSX from "xlsx"
 
 //File -> workbook -> sheet -> rows&columns
-const path='tests/TestData/playwright_test_data.xlsx';
+const path='learning/TestData/playwright_test_data.xlsx';
 const workbook=XLSX.read(path);
 const sheetName=workbook.SheetNames[0];
 const worksheet=workbook.Sheets[sheetName];
