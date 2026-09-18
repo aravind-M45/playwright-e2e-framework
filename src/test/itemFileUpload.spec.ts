@@ -15,7 +15,7 @@ test("File Upload", async ({ page, login }) => {
     const fileChooserPromise = page.waitForEvent('filechooser');
     await page.getByRole('button', { name: 'Add photo', exact: true }).click();
     const fileChooser = await fileChooserPromise;
-    await fileChooser.setFiles('./tests/uploads/Bottle.jpg');
+    await fileChooser.setFiles('./learning/uploads/Bottle.jpg');
 
     await page.getByRole('button', { name: 'Done', exact: true }).click();
 

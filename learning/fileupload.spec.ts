@@ -5,7 +5,7 @@ test.describe("File Upload and Download", () => {
     test("Verify File Upload", async ({ page }) => {
         await userLogin(page);
         const fileUpload = page.locator("#fileInput");
-        await fileUpload.setInputFiles("./tests/uploads/fileupload.json");
+        await fileUpload.setInputFiles("./learning/uploads/fileupload.json");
         await expect(page.locator("#fileName"))
             .toHaveText("Selected: fileupload.json");
     });
@@ -32,8 +32,8 @@ test.describe("File Upload and Download", () => {
         await expect(page.getByText("Upload Files")).toBeVisible();
         const fileInput = page.locator("#multipleFilesInput")
         await fileInput.setInputFiles([
-        "tests/uploads/fileupload.json",
-        "tests/uploads/Bottle.jpg"
+        "learning/uploads/fileupload.json",
+        "learning/uploads/Bottle.jpg"
     ])
         await page.getByRole('button', { name: "Upload Multiple Files" }).click();
         await expect(page.getByText('Multiple files selected:')).toBeVisible();

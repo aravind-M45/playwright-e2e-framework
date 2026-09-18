@@ -4,7 +4,7 @@ import { test, expect } from "@playwright/test"
 import fs from 'fs'; //import
 
 //Reading Data from JSON
-const path = 'tests/TestData/loginData.json'; //Path of Data
+const path = 'learning/TestData/loginData.json'; //Path of Data
 const loginData: any = JSON.parse(fs.readFileSync(path, 'utf-8')); // for reading the data from JSON File
 
 test.describe.parallel("Group-01", async () => {

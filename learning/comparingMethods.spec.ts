@@ -30,7 +30,7 @@ test("Verify File Upload in the Automation Practise site", async ({ page }) => {
     await page.getByRole('link', { name: "Download Files" }).click();
     await expect(page.getByText("Upload Files")).toBeVisible();
     const fileInput = page.locator("#singleFileInput")
-    await fileInput.setInputFiles("tests/uploads/fileupload.json")
+    await fileInput.setInputFiles("learning/uploads/fileupload.json")
     await page.getByRole('button', { name: "Upload Single File" }).click();
     await expect(page.locator('[id="singleFileStatus"]')).toHaveText(/Single file selected/i)
 })
