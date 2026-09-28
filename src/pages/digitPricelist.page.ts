@@ -95,13 +95,15 @@ export class PriceList {
         const updatedName = `Updated_${this.priceListName}`;
         await this.goToPriceLists();  
         await this.searchPL.fill(this.currentName);
+        console.log("Created Pricelist name: ",this.currentName);
         await this.searchPL.press('Enter');
         await this.page.getByRole('link', { name: this.currentName }).click();
-        await this.nameTextbox.fill(updatedName);  
+        await this.nameTextbox.fill(updatedName); 
+        console.log("Update Pricelist name: ",updatedName); 
         await this.page.locator('[aria-haspopup="listbox"]').click();
         await this.page.getByText('Inactive', { exact: true }).click();
-        await this.page.getByRole('button', { name: /Save/i }).click();
-        await expect(this.page.getByRole('button', { name: /Save/i })).toBeDisabled();
+        await this.page.getByRole('button',{name:'Save',exact:true}).click();
+        await expect(this.page.getByRole('button',{name:'Save',exact:true})).toBeDisabled();
         this.currentName = updatedName;
     }
 }
